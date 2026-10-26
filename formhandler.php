@@ -1,15 +1,18 @@
 <?php
 
- if($_SERVER['REQUEST_METHOD']== 'post'){
+ if($_SERVER['REQUEST_METHOD']== 'POST'){
        $username = $_POST['username'];
        $password = $_POST['pwd'];
        $email = $_POST['email'];
 
        try {
-         require_once './dbh.php';
-         $query = "INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email)";
+         require_once 'dbh.php';
+         $query = "INSERT INTO users (username, pwd, email) VALUES (:username, :password, :email)";
          $stmt = $pdo->prepare($query);
-         $stmt->execute([$username, $password, $email]);
+         $stmt->bindParam(":username", $username);
+         $stmt->bindParam(":password", $password);
+         $stmt->bindParam(":email", $email);
+         $stmt->execute();
          $pdo = NULL;
          $stmt = NULL;
          header('Location: ./form.php');
