@@ -9,8 +9,12 @@
          require_once 'dbh.php';
          $query = "INSERT INTO users (username, pwd, email) VALUES (:username, :password, :email)";
          $stmt = $pdo->prepare($query);
+         $options =[
+          'value'=>12
+         ];
+         $hashedpwd = password_hash($password, PASSWORD_BCRYPT, $options);
          $stmt->bindParam(":username", $username);
-         $stmt->bindParam(":password", $password);
+         $stmt->bindParam(":password", $hashedpwd);
          $stmt->bindParam(":email", $email);
          $stmt->execute();
          $pdo = NULL;

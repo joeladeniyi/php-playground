@@ -7,7 +7,7 @@
 </head>
 <body>
       
-      <form action="php-playground/formhandler.php" method="POST">
+      <form action="formhandler.php" method="POST">
         <input type="text" name="username" placeholder="Enter your name">
         <input type="text" name="pwd" placeholder="Enter your pwd">
         <input type="email" name="email" placeholder="Enter your email">
