@@ -36,11 +36,16 @@
         };
 
         if ($errors){
-          $_SESSION['errors signup'] = $errors;
+          $_SESSION['errors signup'] = $errors; 
           header('Location: ./form.php');
+          die();
         }
 
-        header('Location: ./index.php');
+        create_user($pdo,$username, $password, $email);
+
+        header('Location: ./index.php?signup=success');
+        $pdo = NULL;
+        $stmt = NULL;
         die('data inserted successfully');
     } catch (PDOException $th) {
         die('connection failed' . $th->getMessage());

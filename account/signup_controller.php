@@ -36,3 +36,10 @@
     }
      
  }
+
+
+ function create_user($pdo, $username, $password, $email){
+   set_user($pdo, $username, $password, $email);
+ 
+ 
+ }

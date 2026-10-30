@@ -8,7 +8,9 @@ function checksiguperror(){
         }
         unset($_SESSION['errors signup']);
         return $errors;
-    }else{
-        return [];
+    }
+    else if(isset($_GET['signup']) && $_GET['signup'] === 'success'){
+        echo "<p style='color:green;'>Signup successful!</p>";
+    
     }
 }

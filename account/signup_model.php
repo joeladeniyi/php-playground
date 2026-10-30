@@ -10,7 +10,7 @@ function get_username($pdo, $username){
     return $result;
 
    
-
+    
 
 
 }
@@ -28,3 +28,16 @@ function get_email($pdo, $email){
 
 
 }
+
+function set_user($pdo, $username, $password, $email){
+        $query = "INSERT INTO users (username, pwd, email) VALUES (:username, :password, :email)";
+    $stmt = $pdo->prepare($query);
+    $options =[
+        'cost' => 12,
+    ];
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $hashedPassword);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    }   
